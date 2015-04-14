@@ -1,12 +1,12 @@
 # CodeIgniter on OpenShift #
-This QuickStart was created to make it easy to get started with CodeIgniter 2 
+This QuickStart was created to make it easy to get started with CodeIgniter 3.0
 on OpenShift.
 
 [CodeIgniter](http://www.codeigniter.com/) is a powerful PHP 
 framework with a very small footprint, built for developers who need a simple 
 and elegant toolkit to create full-featured web applications. CodeIgniter 2.x
-is the legacy version of the framework. The current version (2.2.1) came 
-out in January, 2015.
+is the legacy version of the framework. The current version (3.0.0) came 
+out in April, 2015.
 
 The simplest way to install this application is to use the [OpenShift
 QuickStart](https://hub.openshift.com/quickstarts/16-codeigniter). If 
