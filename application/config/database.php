@@ -59,27 +59,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-$active_group = 'default';
-$query_builder = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => TRUE,
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
+$active_group = 'default';
+$active_record = TRUE;
+
+$db['default']['dbprefix'] = '';
+$db['default']['pconnect'] = TRUE;
+$db['default']['db_debug'] = TRUE;
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = getenv('OPENSHIFT_DATA_DIR') . 'storage/framework/dbcache';
+$db['default']['char_set'] = 'utf8';
+$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['swap_pre'] = '';
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;
+
+if(getenv('OPENSHIFT_MYSQL_DB_HOST'))
+{
+	$db['default']['dbdriver'] = 'mysqli';
+	$db['default']['hostname'] = getenv('OPENSHIFT_MYSQL_DB_HOST');
+	$db['default']['port'] = getenv('OPENSHIFT_MYSQL_DB_PORT');
+	$db['default']['username'] = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+	$db['default']['password'] = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+	$db['default']['database'] = getenv('OPENSHIFT_APP_NAME');	
+}
+else
+{
+	$db['default']['dbdriver'] = 'postgre';
+	$db['default']['hostname'] = getenv('OPENSHIFT_POSTGRESQL_DB_HOST');
+	$db['default']['port'] = getenv('OPENSHIFT_POSTGRESQL_DB_PORT');
+	$db['default']['username'] = getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME');
+	$db['default']['password'] = getenv('OPENSHIFT_POSTGRESQL_DB_PASSWORD');
+	$db['default']['database'] = getenv('OPENSHIFT_APP_NAME');
+}
